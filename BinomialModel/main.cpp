@@ -1,55 +1,11 @@
 #include <cmath>
 #include <iostream>
 #include <algorithm>
-
-void print(double *array)
-{
-    for (std::size_t i = 0; i < sizeof(array); ++i) {
-        std::cout << array[i] << std::endl;
-    }
-}
+#include "Asset.h"
 
 double calculateDiscountFactor(double const interestRate, double const maturity)
 {
     return exp(-interestRate * maturity);    
-}
-
-double calculateDrift(double const interestRate, double const volatility)
-{
-    return interestRate - 0.5 * pow(volatility, 2);
-}
-
-
-double calculateDt(double const maturity, double const numberOfSteps)
-{
-    return maturity / numberOfSteps;
-}
-
-double calculateChangeOfAsset(
-        double const volatility, double const dt, double const drift) 
-{
-    return sqrt(pow(volatility, 2)  * dt + pow(drift * dt, 2));
-}
-
-double calculateUpProbability(
-        double const drift, double const dt, double const changeOfAsset)
-{
-    return 0.5 + 0.5 * drift * dt / changeOfAsset;
-}
-
-double calculateDownProbability(double const upProbability)
-{
-    return 1.0 - upProbability;
-}
-
-double calculateLowestAssetAtMaturity(
-        double const changeOfAsset, 
-        double const initialAsset, 
-        double const numberOfSteps)
-{
-    double lowestAssetAtMaturity = 
-        initialAsset * exp(- changeOfAsset * numberOfSteps);
-    return lowestAssetAtMaturity;
 }
 
 double calculateCallPayoff(double const asset, double const strike) {
@@ -101,14 +57,14 @@ int main()
         payoff[numberOfSteps][index] = calculateCallPayoff(assetAtMaturity[index], strike);
     }
 
-    for (std::size_t timesteps = numberOfSteps; timesteps > 0; --timesteps) {
-        for (std::size_t innerIndex = 0; innerIndex < timesteps; ++innerIndex) {
-            const std::size_t formerstep = timesteps - 1;
+    for (std::size_t timestep = numberOfSteps; timestep > 0; --timestep) {
+        for (std::size_t innerIndex = 0; innerIndex < timestep; ++innerIndex) {
+            const std::size_t formerstep = timestep - 1;
             const std::size_t upIndex = innerIndex + 1;
             payoff[formerstep][innerIndex] = 
                 discountFactor * (
-                    payoff[timesteps][innerIndex] * downProbability 
-                    + payoff[timesteps][upIndex] * upProbability);
+                    payoff[timestep][innerIndex] * downProbability 
+                    + payoff[timestep][upIndex] * upProbability);
         }
     }
 
