@@ -1,5 +1,6 @@
 #include <cmath>
 #include <iostream>
+#include <algorithm>
 
 void print(double *array)
 {
@@ -51,12 +52,16 @@ double calculateLowestAssetAtMaturity(
     return lowestAssetAtMaturity;
 }
 
+double calculateCallPayoff(double const asset, double const strike) {
+    return std::max(asset - strike, 0.0);
+}
+
 int main() 
 {
     double const interestRate = 0.02;
     double const maturity = 1.0;
-    std::size_t const numberOfSteps = 4;
-    double const strike = 100;
+    std::size_t const numberOfSteps = 10;
+    double const strike = 90;
     double const volatility = 0.11;
     double const initialAsset = 100.0;
    
@@ -71,14 +76,17 @@ int main()
     double const downProbability = calculateDownProbability(upProbability);
 
     std::size_t const numberOfAssetAtMaturity = numberOfSteps + 1;
+
     double assetAtMaturity[numberOfAssetAtMaturity] = {0.0};
-    print(assetAtMaturity);
+
     for (std::size_t i = 0; i < numberOfAssetAtMaturity; ++i) {
         std::cout << assetAtMaturity[i] << std::endl;
     }
+
     double const lowestAssetAtMaturity = 
         calculateLowestAssetAtMaturity(changeOfAsset, initialAsset, numberOfSteps);
     assetAtMaturity[0] = lowestAssetAtMaturity;
+
     for (std::size_t i = 0; i < numberOfAssetAtMaturity-1; ++i) {
         assetAtMaturity[i+1] = assetAtMaturity[i] * exp(2 * changeOfAsset);
     }
@@ -86,6 +94,26 @@ int main()
     for (std::size_t i = 0; i < numberOfAssetAtMaturity; ++i) {
         std::cout << assetAtMaturity[i] << std::endl;
     }
+
+    double payoff[numberOfSteps][numberOfAssetAtMaturity] = {0.0};
+
+    for (std::size_t index = 0; index < numberOfAssetAtMaturity; ++index) {
+        payoff[numberOfSteps][index] = calculateCallPayoff(assetAtMaturity[index], strike);
+    }
+
+    for (std::size_t timesteps = numberOfSteps; timesteps > 0; --timesteps) {
+        for (std::size_t innerIndex = 0; innerIndex < timesteps; ++innerIndex) {
+            const std::size_t formerstep = timesteps - 1;
+            const std::size_t upIndex = innerIndex + 1;
+            payoff[formerstep][innerIndex] = 
+                discountFactor * (
+                    payoff[timesteps][innerIndex] * downProbability 
+                    + payoff[timesteps][upIndex] * upProbability);
+        }
+    }
+
+    std::cout << "European Call:" << payoff[0][0] << std::endl;
+
     return 0;
 }
 
