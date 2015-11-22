@@ -1,6 +1,5 @@
 #include "Asset.h"
 
-#include <algorithm>
 #include <cmath>
 
 double calculateDrift(double const interestRate, double const volatility)
