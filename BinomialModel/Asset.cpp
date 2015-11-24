@@ -2,39 +2,39 @@
 
 #include <cmath>
 
-double calculateDrift(double const interestRate, double const volatility)
+const double calculateDrift(const double interestRate, const double volatility)
 {
     return interestRate - 0.5 * pow(volatility, 2);
 }
 
-double calculateDt(double const maturity, double const numberOfSteps)
+const double calculateDt(const double maturity, const double numberOfSteps)
 {
     return maturity / numberOfSteps;
 }
 
-double calculateChangeOfAsset(
-        double const volatility, double const dt, double const drift) 
+const double calculateChangeOfAsset(
+        const double volatility, const double dt, const double drift) 
 {
     return sqrt(pow(volatility, 2)  * dt + pow(drift * dt, 2));
 }
 
-double calculateUpProbability(
-        double const drift, double const dt, double const changeOfAsset)
+const double calculateUpProbability(
+        const double drift, const double dt, const double changeOfAsset)
 {
     return 0.5 + 0.5 * drift * dt / changeOfAsset;
 }
 
-double calculateDownProbability(double const upProbability)
+const double calculateDownProbability(const double upProbability)
 {
     return 1.0 - upProbability;
 }
 
-double calculateLowestAssetAtMaturity(
-        double const changeOfAsset, 
-        double const initialAsset, 
-        double const numberOfSteps)
+const double calculateLowestAssetAtMaturity(
+        const double changeOfAsset, 
+        const double initialAsset, 
+        const double numberOfSteps)
 {
-    double lowestAssetAtMaturity = 
+    const double lowestAssetAtMaturity = 
         initialAsset * exp(- changeOfAsset * numberOfSteps);
     return lowestAssetAtMaturity;
 }

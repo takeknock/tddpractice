@@ -1,21 +1,21 @@
 #pragma once
 
-double calculateDrift(double const interestRate, double const volatility);
+const double calculateDrift(const double interestRate, const double volatility);
 
 
-double calculateDt(double const maturity, double const numberOfSteps);
+const double calculateDt(const double maturity, const double numberOfSteps);
 
 
-double calculateChangeOfAsset(
-        double const volatility, double const dt, double const drift); 
+const double calculateChangeOfAsset(
+        const double volatility, const double dt, const double drift); 
 
 
-double calculateUpProbability(
-        double const drift, double const dt, double const changeOfAsset);
+const double calculateUpProbability(
+        const double drift, const double dt, const double changeOfAsset);
 
-double calculateDownProbability(double const upProbability);
+const double calculateDownProbability(const double upProbability);
 
-double calculateLowestAssetAtMaturity(
-        double const changeOfAsset, 
-        double const initialAsset, 
-        double const numberOfSteps);
+const double calculateLowestAssetAtMaturity(
+        const double changeOfAsset, 
+        const double initialAsset, 
+        const double numberOfSteps);

@@ -3,12 +3,20 @@
 #include <algorithm>
 #include "Asset.h"
 
-double calculateDiscountFactor(double const interestRate, double const maturity)
+/*
+void print(const double *array)
+{
+    for (std::size_t i = 0; i < array.size(); ++i) {
+        std::cout << array[i] << std::endl;
+    }
+}
+*/
+const double calculateDiscountFactor(const double interestRate, double const maturity)
 {
     return exp(-interestRate * maturity);    
 }
 
-double calculateCallPayoff(double const asset, double const strike) {
+const double calculateCallPayoff(double const asset, double const strike) {
     return std::max(asset - strike, 0.0);
 }
 
@@ -46,6 +54,7 @@ int main()
     for (std::size_t i = 0; i < numberOfAssetAtMaturity-1; ++i) {
         assetAtMaturity[i+1] = assetAtMaturity[i] * exp(2 * changeOfAsset);
     }
+    //print(assetAtMaturity);
     
     for (std::size_t i = 0; i < numberOfAssetAtMaturity; ++i) {
         std::cout << assetAtMaturity[i] << std::endl;
