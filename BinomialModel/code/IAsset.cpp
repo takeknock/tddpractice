@@ -1,17 +1,29 @@
 #include <cmath>
-#include "IAsset.h"
+#include <iostream>
 
+#include "IAsset.h"
 
 namespace trainingbm {
     
-    IAsset::IAsset(const double drift, const double volatility, const double spot)
+    //IAsset::IAsset(const double drift, const double volatility, const double spot)
+    //{
+    //}
+    IAsset::IAsset()
     {
-
     }
 
     IAsset::~IAsset()
     {
     }
+
+    //IAsset& IAsset::operator=(const IAsset&)
+    //{
+    //}
+
+    //IAsset(const IAsset&)
+    //{
+    //}
+
 }
     
 //const double calculateDrift(const double interestRate, const double volatility)

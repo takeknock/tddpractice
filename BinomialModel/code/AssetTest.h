@@ -5,7 +5,7 @@
 #include <cppunit/CompilerOutputter.h>
 
 namespace trainingbm {
-    class AssetTest :public CppUnit::TestFixture {
+    class AssetTest :public CPPUNIT_NS::TestFixture {
     public:
         CPPUNIT_TEST_SUITE(AssetTest);
         CPPUNIT_TEST(testConstructor);

@@ -1,7 +1,7 @@
 #pragma once 
+#include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-#include "IAsset.h"
-
+#include "Asset.h"
 
 namespace trainingbm {
     class AssetFactory {
@@ -10,7 +10,7 @@ namespace trainingbm {
         AssetFactory();
         ~AssetFactory();
     
-        boost::shared_ptr<IAsset> createAsset(
+        const boost::shared_ptr<Asset> createAsset(
             const double drift, const double volatility, const double spot);
     
     };

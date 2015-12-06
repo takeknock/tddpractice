@@ -12,13 +12,13 @@ namespace trainingbm {
     public:
         CPPUNIT_TEST_SUITE(AssetFactoryTest);
         CPPUNIT_TEST(testConstructor);
-        CPPUNIT_TEST(createAssetTest);
+        CPPUNIT_TEST(testCreateAsset);
         CPPUNIT_TEST_SUITE_END();
     
     public:
         virtual void setUp();
-        const void testConstructor();
-        const void testCreateAsset();
+        void testConstructor();
+        void testCreateAsset();
         virtual void tearDown();
     
     };

@@ -1,12 +1,22 @@
 #include "AssetFactoryTest.h"
+CPPUNIT_TEST_SUITE_REGISTRATION(trainingbm::AssetFactoryTest);
 
 namespace trainingbm {
-    const void AssetFactoryTest::testConstructor()
+    void AssetFactoryTest::setUp()
+    {
+        return;
+    }
+    void AssetFactoryTest::testConstructor()
     {
         return;
     }
     
-    const void AssetFactoryTest::testCreateAsset()
+    void AssetFactoryTest::testCreateAsset()
+    {
+        return;
+    }
+
+    void AssetFactoryTest::tearDown()
     {
         return;
     }
