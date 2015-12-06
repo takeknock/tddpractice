@@ -1,27 +1,26 @@
 #pragma once
+
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/ui/text/TestRunner.h>
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/CompilerOutputter.h>
+#include "AssetFactory.h"
 
 namespace trainingbm {
-    class AssetTest :public CppUnit::TestFixture {
+
+    class AssetFactoryTest : public CppUnit::TestFixture {
     public:
-        CPPUNIT_TEST_SUITE(AssetTest);
+        CPPUNIT_TEST_SUITE(AssetFactoryTest);
         CPPUNIT_TEST(testConstructor);
-        //CPPUNIT_TEST();
-        CPPUNIT_TEST(testDrift);
-        CPPUNIT_TEST(testVolatility);
-        CPPUNIT_TEST(testSpot);
+        CPPUNIT_TEST(createAssetTest);
         CPPUNIT_TEST_SUITE_END();
     
     public:
         virtual void setUp();
-        void testConstructor();
-        void testDrift();
-        void testVolatility();
-        void testSpot();
+        const void testConstructor();
+        const void testCreateAsset();
         virtual void tearDown();
     
     };
-}    
+
+} // namespace trainingbm

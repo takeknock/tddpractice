@@ -2,12 +2,18 @@
 #include "IAsset.h"
 
 
+namespace trainingbm {
+    
+    IAsset::IAsset(const double drift, const double volatility, const double spot)
+    {
 
+    }
 
-IAsset::IAsset()
-{
+    IAsset::~IAsset()
+    {
+    }
 }
-
+    
 //const double calculateDrift(const double interestRate, const double volatility)
 //{
 //    return interestRate - 0.5 * pow(volatility, 2);

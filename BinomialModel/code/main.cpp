@@ -1,8 +1,15 @@
 #include <cmath>
-#include <iostream>
+//#include <iostream>
 #include <algorithm>
+#include <cppunit/extensions/HelperMacros.h>
+#include <cppunit/ui/text/TestRunner.h>
+#include <cppunit/TestResultCollector.h>
+#include <cppunit/CompilerOutputter.h>
 #include "IAsset.h"
+#include "AssetFactory.h"
 #include "IAssetTest.h"
+#include "AssetFactoryTest.h"
+#include "AssetTest.h"
 
 /*
 void print(const double *array)
@@ -12,31 +19,46 @@ void print(const double *array)
     }
 }
 */
-const double calculateDiscountFactor(const double interestRate, double const maturity)
-{
-    return exp(-interestRate * maturity);    
-}
+namespace trainingbm {
+    const double calculateDiscountFactor(const double interestRate, double const maturity)
+    {
+        return std::exp(-interestRate * maturity);    
+    }
+    
+    const double calculateCallPayoff(double const asset, double const strike) {
+        return std::max(asset - strike, 0.0);
+    }
 
-const double calculateCallPayoff(double const asset, double const strike) {
-    return std::max(asset - strike, 0.0);
-}
+    const double calculateDrift(const double interestRate, const double volatility)
+    {
+        return interestRate - 0.5 * pow(volatility, 2);
+    }
 
-void test()
-{
-    IAssetTest assetTest;
-    assetTest.testConstructor();
-}
+}// namespace trainingbm
 
 int main() 
 {
-    test();
+    //test();
 
-    double const interestRate = 0.02;
-    double const maturity = 1.0;
-    std::size_t const numberOfSteps = 10;
-    double const strike = 90;
-    double const volatility = 0.11;
-    double const initialAsset = 100.0;
+    const double interestRate = 0.02;
+    const double maturity = 1.0;
+    const std::size_t numberOfSteps = 10;
+    const double strike = 90;
+    const double volatility = 0.11;
+    const double spot = 100.0;
+    const double drift = trainingbm::calculateDrift(interestRate, volatility);
+
+    trainingbm::AssetFactory a;
+    boost::shared_ptr<trainingbm::IAsset> asset = a.createAsset(drift, volatility, spot);
+
+
+    CppUnit::TextTestRunner a_runner;
+    CppUnit::Outputter* a_outputter = 
+        CppUnit::CompilerOutputter::defaultOutputter(
+            &a_runner.result(), std::cout );
+    a_runner.setOutputter( a_outputter );
+    a_runner.addTest(trainingbm::AssetFactoryTest::suite() );
+    a_runner.run();
 
 //   
 //    double const dt = calculateDt(maturity, numberOfSteps);
