@@ -19,4 +19,4 @@ namespace trainingbm {
         const double _spot;
     
     };
-}
+} //namespace trainingbm

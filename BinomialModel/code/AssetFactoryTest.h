@@ -1,4 +1,5 @@
 #pragma once
+#include <boost/shared_ptr.hpp>
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/ui/text/TestRunner.h>
@@ -16,10 +17,10 @@ namespace trainingbm {
         CPPUNIT_TEST_SUITE_END();
     
     public:
-        virtual void setUp();
+        void setUp();
         void testConstructor();
         void testCreateAsset();
-        virtual void tearDown();
+        void tearDown();
     
     };
 

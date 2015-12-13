@@ -56,25 +56,30 @@ int main()
     const double spot = 100.0;
     const double drift = trainingbm::calculateDrift(interestRate, volatility);
 
-    trainingbm::AssetFactory factory;
-    // for efcpp 13
-    boost::shared_ptr<trainingbm::IAsset> asset = 
-        factory.createAsset(drift, volatility, spot);
+//    trainingbm::AssetFactory factory;
+//    // for efcpp 13
+//    boost::shared_ptr<trainingbm::IAsset> asset = 
+//        factory.createAsset(drift, volatility, spot);
+//
+//    const boost::shared_ptr<trainingbm::IAsset> asset2 = 
+//        factory.createAsset(drift, volatility, spot);
+//    asset = asset2;
+//    std::cout << asset << std::endl;
+    
+    CPPUNIT_NS::TestResult controller;
 
-    const boost::shared_ptr<trainingbm::IAsset> asset2 = 
-        factory.createAsset(drift, volatility, spot);
-    asset = asset2;
-    std::cout << asset << std::endl;
-    //CppUnit::TestResult controller;
+    CPPUNIT_NS::TestResultCollector result;
+    controller.addListener(&result);
 
-    //CppUnit::TestResultCollector result;
-    //controller.addListener(&result);
+    CPPUNIT_NS::BriefTestProgressListener progress;
+    controller.addListener(&progress);
 
-    //CppUnit::TestRunner runner;
-    //runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
-    //runner.run(controller);
+    CPPUNIT_NS::TestRunner runner;
+    runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
+    runner.run(controller);
 
-    //CppUnit::CompilerOutputter outputter(&result, CppUnit::stdCOut());
+    CPPUNIT_NS::CompilerOutputter outputter(&result, CPPUNIT_NS::stdCOut());
+    outputter.write();
 
 
 //

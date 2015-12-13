@@ -1,8 +1,12 @@
 #pragma once
+#include <boost/shared_ptr.hpp>
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/ui/text/TestRunner.h>
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/CompilerOutputter.h>
+
+#include "Asset.h"
+#include "IAsset.h"
 
 namespace trainingbm {
     class AssetTest :public CPPUNIT_NS::TestFixture {
@@ -16,12 +20,13 @@ namespace trainingbm {
         CPPUNIT_TEST_SUITE_END();
     
     public:
-        virtual void setUp();
+        void setUp();
         void testConstructor();
         void testDrift();
         void testVolatility();
         void testSpot();
-        virtual void tearDown();
+        void tearDown();
+        boost::shared_ptr<Asset> _asset;
     
     };
-}    
+}   //namespace trainingbm 
