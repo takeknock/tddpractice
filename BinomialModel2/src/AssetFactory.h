@@ -2,6 +2,7 @@
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include "Asset.h"
+#include "IModel.h"
 
 namespace trainingbm {
     class AssetFactory {
@@ -11,7 +12,7 @@ namespace trainingbm {
         ~AssetFactory();
     
         const boost::shared_ptr<Asset> createAsset(
-            const double drift, const double volatility, const double spot);
+            IModel model, const double volatility, const double spot);
     
     };
 }

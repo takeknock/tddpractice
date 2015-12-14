@@ -11,7 +11,7 @@ namespace trainingbm {
         friend class AssetTest;
         Asset(IModel model, const double volatility, const double spot);
         ~Asset();
-        double operator[](const int i, const int j);
+        double operator()(const int i, const int j);
         void evolve();
 
     
@@ -19,7 +19,6 @@ namespace trainingbm {
         //Asset& operator=(const Asset&);
         //Asset(const Asset&);
         IModel _model;
-        const double _drift;
         const double _volatility;
         const double _spot;
     

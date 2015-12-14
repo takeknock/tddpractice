@@ -1,7 +1,9 @@
+#include <cppunit/extensions/HelperMacros.h>
 #include "AssetTest.h"
 #include "Asset.h"
 #include "AssetFactory.h"
-#include "cppunit/extensions/HelperMacros.h"
+#include "IModel.h"
+#include "IContract.h"
 
 namespace trainingbm {
     CPPUNIT_TEST_SUITE_REGISTRATION(AssetTest);
@@ -12,8 +14,10 @@ namespace trainingbm {
         const double volatility = 0.11;
         const double spot = 100.0;
         AssetFactory factory;
+        IContract contract;
+        IModel model(contract);
 
-        _asset = factory.createAsset(drift, volatility, spot);
+        _asset = factory.createAsset(model, volatility, spot);
         return;
     }
 
@@ -25,13 +29,6 @@ namespace trainingbm {
         return;
     }
     
-    
-    void AssetTest::testDrift()
-    {
-        CPPUNIT_ASSERT_EQUAL(0.2, _asset->_drift);
-        return;
-
-    }
     
     void AssetTest::testVolatility()
     {

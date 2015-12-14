@@ -2,19 +2,27 @@
 #include <iostream>
 
 #include "IAsset.h"
+#include "IContract.h"
 
 namespace trainingbm {
     
-    double IAsset::operator[](const int i, const int j)
+    IAsset::IAsset(
+        IModel model(IContract contract), const double volatility, const double spot)
+    {
+    }
+
+    IAsset::~IAsset()
+    {
+    }
+
+    double IAsset::operator()(const int i, const int j)
     {
         //return this->operator[](i, j);
         return 0.0;
     }
 
-    double IAsset::evolve()
-    {
-        return 0.0;
-    }
+
+
 
 }
     

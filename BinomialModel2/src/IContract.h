@@ -1,9 +1,12 @@
 #pragma once
-
-class IContract {
-public:
-    const double calculateExpectation(asset);
-
-
-};
+#include "IAsset.h"
+namespace trainingbm {
+    class IContract {
+    public:
+        const double calculateExpectation(IAsset asset) const;
+    
+    
+    };
+    
+}// namespace trainingbm {
 
