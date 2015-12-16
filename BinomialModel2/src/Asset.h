@@ -5,11 +5,11 @@
 #include "IAsset.h"
 
 namespace trainingbm {
-
+    
     class Asset : public IAsset{
     public:
         friend class AssetTest;
-        Asset(IModel model, const double volatility, const double spot);
+        Asset(const IModel&, const double volatility, const double spot);
         ~Asset();
         double operator()(const int i, const int j);
         void evolve();
@@ -18,9 +18,11 @@ namespace trainingbm {
     private:
         //Asset& operator=(const Asset&);
         //Asset(const Asset&);
-        IModel _model;
+        const IModel& _model;
         const double _volatility;
         const double _spot;
+
+        const IAsset& getRefference();
     
     };
 } //namespace trainingbm

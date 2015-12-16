@@ -12,7 +12,7 @@ namespace trainingbm {
         ~AssetFactory();
     
         const boost::shared_ptr<Asset> createAsset(
-            IModel model, const double volatility, const double spot);
+            const IModel& model, const double volatility, const double spot);
     
     };
 }

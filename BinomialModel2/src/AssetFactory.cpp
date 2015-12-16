@@ -17,7 +17,7 @@ namespace trainingbm {
     
     
     const boost::shared_ptr<Asset> AssetFactory::createAsset(
-        IModel model, const double volatility, const double spot)
+        const IModel& model, const double volatility, const double spot)
     {
         //boost::scoped_ptr<Asset> asset = new Asset(drift, volatility, spot); 
         return boost::shared_ptr<Asset>(new Asset(model, volatility, spot)); 

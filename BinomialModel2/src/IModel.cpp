@@ -4,9 +4,13 @@
 
 
 namespace trainingbm {
-    IModel::IModel(const IContract contract)
+    IModel::IModel(const IContract& contract)
     {
 
+    }
+
+    IModel::~IModel()
+    {
     }
 
     double IModel::evolveUp(const int i, const int j, const int numStep)

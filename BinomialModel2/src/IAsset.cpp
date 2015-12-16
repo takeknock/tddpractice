@@ -6,8 +6,7 @@
 
 namespace trainingbm {
     
-    IAsset::IAsset(
-        IModel model(IContract contract), const double volatility, const double spot)
+    IAsset::IAsset()
     {
     }
 
@@ -22,6 +21,10 @@ namespace trainingbm {
     }
 
 
+    void IAsset::evolve()
+    {
+        return;
+    }
 
 
 }

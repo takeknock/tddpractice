@@ -1,9 +1,11 @@
 
 #include "Asset.h"
 #include "IModel.h"
+#include "IContract.h"
 
 namespace trainingbm {
-    Asset::Asset(IModel model, const double volatility, const double spot)
+
+    Asset::Asset(const IModel& model, const double volatility, const double spot)
     : _model(model), _volatility(volatility), _spot(spot)
     {
     
