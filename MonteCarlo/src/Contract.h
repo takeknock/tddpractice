@@ -1,4 +1,4 @@
-
+#pragma once
 namespace mctr {
     class Contract {
     public:

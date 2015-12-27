@@ -1,10 +1,16 @@
-all:a.out
+CC = g++
+OBJ = Contract.o ContractTest.o main.o
+LNK = -lcppunit
+OUTFILENAME = a.out
 
-a.out:main.o Contract.o
-	g++ main.o Contract.o -o a.out
+all:main $(OUTFILENAME) 
 
-main.o:main.cpp
-	g++ -O -c main.cpp -o main.o
-Contract.o:Contract.cpp
-	g++ -O -c Contract.cpp -o Contract.o
-	
+main: $(OBJ)
+	$(CC) -o $(OBJ) -lcppunit 
+
+$(OUTFILENAME): *.cpp
+	$(CC) -o $@ $^ -lcppunit
+
+
+clean:
+	-rm $(OBJ) $(OUTFILENAME)
