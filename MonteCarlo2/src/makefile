@@ -3,8 +3,8 @@ impl = $(wildcard *.cpp)
 LNK = -lcppunit
 OUTFILENAME = a.out
 
-all:$(OUTFILENAME) 
-	$(CC) $(impl) $(LNK)
+$(OUTFILENAME): $(impl)
+	$(CC) $^ $(LNK)	
 
 clean:
 	-rm $(OUTFILENAME)

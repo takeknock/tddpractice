@@ -14,3 +14,7 @@ $(OUTFILENAME): *.cpp
 
 clean:
 	-rm $(OBJ) $(OUTFILENAME)
+
+
+#all:$(OUTFILENAME) 
+#	$(CC) $(impl) $(LNK)

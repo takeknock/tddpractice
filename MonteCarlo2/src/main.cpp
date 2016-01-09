@@ -12,11 +12,11 @@
 namespace mctr {
     /////////////////Monte Carlo Procedure/////////////////
     //1. create one path
-    const Path createOnePath(const TimeGrid& time)
-    {
-        Path path;
-        return path;
-    }
+    //const Path createOnePath(const TimeGrid& time)
+    //{
+    //    Path path;
+    //    return path;
+    //}
     
     //2. calculate payoff for each path
     
@@ -77,7 +77,7 @@ int main()
         const double price = mean(accumulator);
         std::cout << price << std::endl;
     
-    }
+    } // namespace boost::accumulator
 
 //    StandardNormalVariableGenerator randomnessGenerator(seed);
 //    {
