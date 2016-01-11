@@ -1,5 +1,5 @@
 #include "TimeGridTest.h"
-#include "../TimeGrid.h"
+#include "TimeGrid.h"
 
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TimeGridTest);
