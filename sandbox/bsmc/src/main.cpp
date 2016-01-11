@@ -1,3 +1,10 @@
+#include <cppunit/BriefTestProgressListener.h>
+#include <cppunit/CompilerOutputter.h>
+#include <cppunit/extensions/TestFactoryRegistry.h>
+#include <cppunit/TestResult.h>
+#include <cppunit/TestResultCollector.h>
+#include <cppunit/TestRunner.h>
+
 #include <cassert>
 #include <cmath>
 #include <boost/accumulators/accumulators.hpp>
@@ -24,11 +31,25 @@ bool doubleEqual(double a, double b, int effectiveOrder)
 int main()
 {
 
-    // for test code
+    // for unit tests
+    CPPUNIT_NS::TestResult controller;
+
+    CPPUNIT_NS::TestResultCollector result;
+    controller.addListener(&result);
+
+    CPPUNIT_NS::BriefTestProgressListener progress;
+    controller.addListener(&progress);
+
+    CPPUNIT_NS::TestRunner runner;
+    runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
+    runner.run(controller);
+
+    CPPUNIT_NS::CompilerOutputter outputter(&result, CPPUNIT_NS::stdCOut());
+    outputter.write();
 
 
 
-
+    // for combination test
 
     const double strike = 100.0;
     const double maturity = 1.0;
