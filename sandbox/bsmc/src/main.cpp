@@ -9,16 +9,18 @@
 #include <cmath>
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "Path.h"
 #include "TimeGrid.h"
+#include "IContract.h"
 
-Path createOnePath(TimeGrid& timeGrid)
-{
-    Path path(timeGrid);
-    return path;
-}
-
+//Path createOnePath(TimeGrid& timeGrid)
+//{
+//    Path path(timeGrid);
+//    return path;
+//}
+//
 bool doubleEqual(double a, double b, int effectiveOrder)
 {
     const int aint = a * std::pow(10, effectiveOrder);
@@ -49,7 +51,7 @@ int main()
 
 
 
-    // for combination test
+    // for combination tests
 
     const double strike = 100.0;
     const double maturity = 1.0;
@@ -59,8 +61,8 @@ int main()
     const std::size_t numberOfPaths = 100;
     const std::size_t timesteps = 10;
 
-    TimeGrid timeGrid(timesteps);
-    //EuropeanOption europeanCall(strike, maturity, Payoff::call);
+    mctr::TimeGrid timeGrid(timesteps);
+    boost::shared_ptr<mctr::IContract> europeanCall;
 
     {
         using namespace boost::accumulators;
@@ -69,7 +71,7 @@ int main()
 
         // create one path
         for (std::size_t i = 0; i < numberOfPaths; ++i) {
-            Path path = createOnePath(timeGrid);
+            //Path path = createOnePath(timeGrid);
             //double payoff = europeanCall.calculatePayoff(path);
 
 
