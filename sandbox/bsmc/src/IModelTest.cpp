@@ -10,7 +10,7 @@ void IModelTest::setUp()
 
 void IModelTest::testCreateOnePath()
 {
-    //子クラスのcreateOnePathを実行しているかテスト
+    //test for executing createOnePath in child classes.
 
 }
 

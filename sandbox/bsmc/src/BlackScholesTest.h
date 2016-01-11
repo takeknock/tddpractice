@@ -5,16 +5,16 @@
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/CompilerOutputter.h>
 
-class IContractTest : public CPPUNIT_NS::TestFixture {
+class BlackScholesTest : public CPPUNIT_NS::TestFixture {
 public:
-    CPPUNIT_TEST_SUITE(IContractTest);
-    CPPUNIT_TEST(testCalculatePayoff);
+    CPPUNIT_TEST_SUITE(BlackScholesTest);
+    CPPUNIT_TEST(testCreateOnePath);
     CPPUNIT_TEST_SUITE_END();
 
 public:
     void setUp();
-    void testCalculatePayoff();
+    void testCreateOnePath();
     void tearDown();
 
 };
-        
+    

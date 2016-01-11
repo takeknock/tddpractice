@@ -11,9 +11,10 @@ namespace mctr {
         Path(TimeGrid& timeGrid);
         ~Path();
         double operator()(const std::size_t i);
+        void operator =(Path& path);
     
     private:
-        TimeGrid _data;
+        TimeGrid& _data;
     
     };
 

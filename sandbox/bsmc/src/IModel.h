@@ -6,7 +6,7 @@
 namespace mctr {
     class IModel {
     public:
-        Path createOnePath(TimeGrid& timeGrid);
+        boost::shared_ptr<Path> createOnePath(TimeGrid& timeGrid);
     
     };
 } // namespace mctr

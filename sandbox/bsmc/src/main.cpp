@@ -14,6 +14,8 @@
 #include "Path.h"
 #include "TimeGrid.h"
 #include "IContract.h"
+#include "IModel.h"
+#include "BlackScholes.h"
 
 //Path createOnePath(TimeGrid& timeGrid)
 //{
@@ -34,20 +36,20 @@ int main()
 {
 
     // for unit tests
-    CPPUNIT_NS::TestResult controller;
+    //CPPUNIT_NS::TestResult controller;
 
-    CPPUNIT_NS::TestResultCollector result;
-    controller.addListener(&result);
+    //CPPUNIT_NS::TestResultCollector result;
+    //controller.addListener(&result);
 
-    CPPUNIT_NS::BriefTestProgressListener progress;
-    controller.addListener(&progress);
+    //CPPUNIT_NS::BriefTestProgressListener progress;
+    //controller.addListener(&progress);
 
-    CPPUNIT_NS::TestRunner runner;
-    runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
-    runner.run(controller);
+    //CPPUNIT_NS::TestRunner runner;
+    //runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
+    //runner.run(controller);
 
-    CPPUNIT_NS::CompilerOutputter outputter(&result, CPPUNIT_NS::stdCOut());
-    outputter.write();
+    //CPPUNIT_NS::CompilerOutputter outputter(&result, CPPUNIT_NS::stdCOut());
+    //outputter.write();
 
 
 
@@ -60,10 +62,14 @@ int main()
     const double interestRate = 0.06;
     const std::size_t numberOfPaths = 100;
     const std::size_t timesteps = 10;
+    const double drift = interestRate - 0.5 * volatility * volatility;
 
     mctr::TimeGrid timeGrid(timesteps);
-    boost::shared_ptr<mctr::IContract> europeanCall;
+    std::cout << timeGrid(1) << std::endl;
+    boost::shared_ptr<mctr::IModel> model(new mctr::BlackScholes(drift, volatility));
+    //boost::shared_ptr<mctr::IContract> europeanCall(strike, maturity, Payoff::call);
 
+    double price = 0.0;
     {
         using namespace boost::accumulators;
         // accumulator is used to store each discounted payoffs
@@ -71,18 +77,18 @@ int main()
 
         // create one path
         for (std::size_t i = 0; i < numberOfPaths; ++i) {
-            //Path path = createOnePath(timeGrid);
+            //boost::shared_ptr<mctr::Path> path = model->createOnePath(timeGrid);
             //double payoff = europeanCall.calculatePayoff(path);
 
-
-            
-            
-            
+            double discountedPayoff = discount(payoff, discountFactor);
+            accumulator(discountedPayoff);
         }
         
+    price = mean(accumulator);
+
 
     }
-    double price = 9.3846;
+    //price = 9.3846;
     
     assert(doubleEqual(price, 9.3846, 5));
 

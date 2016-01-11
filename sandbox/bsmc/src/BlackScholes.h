@@ -1,5 +1,6 @@
 #ifndef BLACKSCHOLES_H_INCLUDED
 #define BLACKSCHOLES_H_INCLUDED
+#include <boost/shared_ptr.hpp>
 #include "Path.h"
 #include "TimeGrid.h"
 #include "IModel.h"
@@ -10,8 +11,10 @@ namespace mctr {
         BlackScholes(const double drift, const double volatility);
         ~BlackScholes();
 
-        Path createOnePath(TimeGrid& timeGrid);
-
+        boost::shared_ptr<Path> createOnePath(TimeGrid& timeGrid);
+    private:
+        const double _drift;
+        const double _volatility;
     };
 
 
