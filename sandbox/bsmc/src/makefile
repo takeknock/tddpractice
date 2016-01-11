@@ -4,7 +4,7 @@ LNK = -lcppunit
 OUTFILENAME = a.out
 
 $(OUTFILENAME): $(impl)
-	$(CC) -g $^ $(LNK)	
+	$(CC) $^ $(LNK)	
 
 clean:
 	-rm $(OUTFILENAME)
