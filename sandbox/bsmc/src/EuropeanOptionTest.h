@@ -5,17 +5,15 @@
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/CompilerOutputter.h>
 
-class PathTest : public CPPUNIT_NS::TestFixture {
+class EuropeanOptionTest : public CPPUNIT_NS::TestFixture {
 public:
-    CPPUNIT_TEST_SUITE(PathTest);
-    CPPUNIT_TEST(testOperatorEqual);
-    CPPUNIT_TEST(testOperatorAccessor);
+    CPPUNIT_TEST_SUITE(EuropeanOptionTest);
+    CPPUNIT_TEST(testConstructor);
     CPPUNIT_TEST_SUITE_END();
 
 public:
     void setUp();
-    void testOperatorEqual();
-    void testOperatorAccessor();
+    void testConstructor();
     void tearDown();
 
 };

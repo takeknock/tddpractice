@@ -8,9 +8,13 @@ void PathTest::setUp()
 {
 }
 
-void PathTest::testConstructor()
+void PathTest::testOperatorEqual()
 {
 
+}
+
+void PathTest::testOperatorAccessor()
+{
 }
 
 

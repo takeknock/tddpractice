@@ -11,7 +11,7 @@ namespace mctr {
     {
     }
 
-    double IContract::calculatePayoff(Path& path)
+    double IContract::calculatePayoff(boost::shared_ptr<Path> path)
     {
         return this->calculatePayoff(path);
     }

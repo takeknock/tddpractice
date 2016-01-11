@@ -1,7 +1,7 @@
 #ifndef ICONTRACT_H_INCLUDED
 #define ICONTRACT_H_INCLUDED
 
-
+#include <boost/shared_ptr.hpp>
 #include "Path.h"
 
 
@@ -11,7 +11,7 @@ namespace mctr {
     public:
         IContract();
         virtual ~IContract();
-        double calculatePayoff(Path& path);
+        double calculatePayoff(boost::shared_ptr<Path> path);
     };
 
 } // namespace mctr
