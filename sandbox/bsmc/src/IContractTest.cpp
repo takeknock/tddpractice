@@ -11,6 +11,7 @@ namespace mctr {
     
     void IContractTest::testCalculatePayoff()
     {
+        //子クラスのメンバ関数を実行しているかテストしたい
     
     }
     
