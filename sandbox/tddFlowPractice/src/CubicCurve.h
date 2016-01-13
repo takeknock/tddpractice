@@ -1,10 +1,11 @@
 #pragma once
 #include <map>
 
+class CubicCurveTest;
 namespace cc {
     class CubicCurve {
     public:
-        friend class CubicCurvicTest;
+        friend class ::CubicCurveTest;
     public:
         CubicCurve(const double a, const double b, const double c, const double d);
         ~CubicCurve();
@@ -13,6 +14,11 @@ namespace cc {
         
         const bool isExistLocalPoints() const;
         const std::pair<double, double> calculateInflectionPoint() const;
+    private:
+        const double _a;
+        const double _b;
+        const double _c;
+        const double _d;
 
     };
 

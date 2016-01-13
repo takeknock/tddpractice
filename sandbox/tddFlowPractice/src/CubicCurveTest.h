@@ -8,6 +8,7 @@
 class CubicCurveTest : public CPPUNIT_NS::TestFixture {
 public:
     CPPUNIT_TEST_SUITE(CubicCurveTest);
+    CPPUNIT_TEST(testConstructor);
     CPPUNIT_TEST(testSolve);
     CPPUNIT_TEST(testIsExistLocalPoints);
     CPPUNIT_TEST(testCalculateInflectionPoint);
@@ -15,10 +16,10 @@ public:
 
 public:
     void setUp();
+    void testConstructor();
     void testSolve();
     void testIsExistLocalPoints();
     void testCalculateInflectionPoint();
-    void testConstructor();
     void tearDown();
 
 };
