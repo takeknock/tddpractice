@@ -20,6 +20,7 @@ namespace mctr {
 
     void Path::operator =(Path& path)
     {
+        
         this->_data = path._data;
     }
     

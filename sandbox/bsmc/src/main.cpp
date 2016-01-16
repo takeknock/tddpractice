@@ -71,7 +71,7 @@ int main()
     const double drift = interestRate - 0.5 * volatility * volatility;
 
     mctr::TimeGrid timeGrid(timesteps);
-    std::cout << timeGrid(1) << std::endl;
+    std::cout << timeGrid(4) << std::endl;
     boost::shared_ptr<mctr::IModel> model(new mctr::BlackScholes(drift, volatility));
     boost::shared_ptr<mctr::IContract> europeanCall(
         new mctr::EuropeanOption(strike, maturity, mctr::Payoff::call));
@@ -84,6 +84,7 @@ int main()
 
         // create one path
         for (std::size_t i = 0; i < numberOfPaths; ++i) {
+            // FIXME: segmentation fault
             boost::shared_ptr<mctr::Path> path = model->createOnePath(timeGrid);
             double payoff = europeanCall->calculatePayoff(path);
             const double discountFactor = std::exp( - interestRate * maturity);
@@ -93,8 +94,6 @@ int main()
         }
         
     price = mean(accumulator);
-
-
     }
     //price = 9.3846;
     

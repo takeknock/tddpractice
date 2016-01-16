@@ -2,9 +2,14 @@
 #include "IModel.h"
 
 namespace mctr {
-    boost::shared_ptr<Path> IModel::createOnePath(TimeGrid& timeGrid)
+
+    IModel::~IModel()
     {
-        return this->createOnePath(timeGrid);
+    }
+
+    const boost::shared_ptr<Path> IModel::createOnePath(TimeGrid& timeGrid)
+    {
+        return this->createOnePathImpl(timeGrid);
     }
 
 

@@ -11,10 +11,12 @@ namespace mctr {
         BlackScholes(const double drift, const double volatility);
         ~BlackScholes();
 
-        boost::shared_ptr<Path> createOnePath(TimeGrid& timeGrid);
     private:
         const double _drift;
         const double _volatility;
+
+        const boost::shared_ptr<Path> createOnePathImpl(
+            TimeGrid& timeGrid);
     };
 
 

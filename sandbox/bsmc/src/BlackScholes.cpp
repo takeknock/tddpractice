@@ -1,3 +1,4 @@
+#include <iostream>
 #include "BlackScholes.h"
 
 namespace mctr {
@@ -11,10 +12,11 @@ namespace mctr {
     {
     }
 
-    boost::shared_ptr<Path> BlackScholes::createOnePath(TimeGrid& timeGrid)
+    const boost::shared_ptr<Path> BlackScholes::createOnePathImpl(
+        TimeGrid& timeGrid)
     {
-        boost::shared_ptr<Path> path(new Path(timeGrid));
-        return path;
+        return boost::shared_ptr<Path> (new Path(timeGrid));
+        //return path;
     }
 
 

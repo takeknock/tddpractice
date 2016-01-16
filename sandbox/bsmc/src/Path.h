@@ -1,7 +1,7 @@
 #ifndef PATH_H_INCLUDED
 #define PATH_H_INCLUDED
 
-#include <boost/numeric/ublas/vector.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "TimeGrid.h"
 

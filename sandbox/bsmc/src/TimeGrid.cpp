@@ -10,20 +10,21 @@ namespace mctr {
     {
     }
     
-    std::size_t TimeGrid::size()
+    std::size_t TimeGrid::size() const
     {
         return _data.size();
     }
-    double TimeGrid::operator()(const std::size_t i)
+
+    double& TimeGrid::operator()(const std::size_t i)
     {
-        return _data[i];
+        return _data(i);
     }
 
     void TimeGrid::operator =(TimeGrid& timeGrid)
     {
         this->_data.resize(timeGrid.size());
         for (std::size_t i = 0; i < timeGrid.size(); ++i) {
-            this->_data[i] = timeGrid._data[i];
+            this->_data(i) = timeGrid._data(i);
         }
     }
 

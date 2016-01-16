@@ -8,15 +8,14 @@ namespace mctr {
     public:
         TimeGrid(const std::size_t timesteps);
         ~TimeGrid();
-        std::size_t size();
-        double operator()(const std::size_t i);
+        std::size_t size() const;
+        double& operator()(const std::size_t i);
         // wand to add setter to (TimeGrid) _data
         void operator =(TimeGrid& timeGrid);
     
     private:
         //const std::size_t _grids;
         boost::numeric::ublas::vector<double> _data;
-    
     };
 } // namespace mctr {
 #endif // TIMEGRID_H_INCLUDED
